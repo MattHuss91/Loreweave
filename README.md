@@ -1,61 +1,45 @@
-# Loreweave
-> **A Future Echoes Project**
 
-Loreweave is a self-hosted campaign management app for tabletop role-playing games.
-Its mission is to give Game Masters and players a beautiful, interactive, and private space to store and explore their campaign’s characters, events, locations, and factions
+<p align="center">
+  <img src="https://i.imgur.com/WEGvkz8.png" width="220" />
+</p>
 
-## What you get
-- Streamlit app with admin-only editing and player read-only views
-- PostgreSQL schema + calendar seed for a 10-month, 36-day/month calendar
-- First-run bootstrap page to set campaign name and create the Admin
-- `DATABASE_URL` based config (works with Render/Railway/Supabase/Neon/etc.)
-- One-click style deploy examples for Render and Railway
+# Loreweave Blank
 
-## Loreweave lets you:
+**Mission Statement**  
+Loreweave is a self-hosted campaign management app for tabletop role-playing games.  
+Its mission is to give GMs and players a **beautiful, interactive, and private space** to store and explore their campaign’s characters, events, locations, and factions — without needing code or third-party accounts.
 
-Track your world — maintain detailed profiles for characters, locations, factions, and events.
+**Quick Summary**
+- **Track your world** — characters, locations, factions, and events with cross-links.
+- **Stay organised** — timeline with filters, world-day ordering, and readable dates.
+- **Control permissions** — GM/Admin edits everything, players edit their own characters.
+- **No-code deploy** — one-click to Render with a free Postgres DB.
+- **Custom calendars** — one-time setup with your own month names and lengths.
 
-Control permissions — players can edit their own characters, while the GM can edit everything.
+[![Deploy Loreweave Blank to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
-Stay organised — view timelines, connect characters to events, and browse lore visually.
+## Deploy on Render
+- Click the button above — you’ll be taken to Render.
+- **Step 1:** Create a free Render account (one-time).
+- **Step 2:** Click **Apply** — Render will automatically:
+  - create a free **Postgres database**
+  - create a **web service** running Loreweave
+  - link them together via `DATABASE_URL`
+- **Step 3:** Once the build finishes, open your app’s public URL.
 
-Run anywhere — deploy in minutes with a free managed database, no setup required.
+## First-Run Setup
+1. Set your **Campaign Name**.
+2. Create your **Admin username & password** (stored securely with bcrypt).
+3. (Optional) Enter a **custom calendar** — one month per line e.g. `Verdanir 36`.
+4. Start adding characters, events, locations, and factions.
 
-Customise for your world — set your campaign name, user logins, and calendar on first run.
+## Update Alerts (Built-in)
+- Set `LOREWEAVE_UPDATE_URL` on Render to:  
+  `https://raw.githubusercontent.com/<YOUR-USER>/<YOUR-REPO>/main/latest.json`
+- The app compares `latest.json` to its `LOCAL_VERSION` and links to `CHANGELOG.md`.
 
---
-
-## Deploy with one click
-
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)  
-### Render
-Deploy on Render
-Clicking the button takes you to Render.
-
-Step 1: Create a free Render account (one-time).
-
-Step 2: Click Apply — Render will automatically:
-
-Create a free Postgres database.
-
-Create a web service running Loreweave.
-
-Link them together so it works instantly.
-
-Step 3: When the build finishes, click your new app’s public URL.
-
-On first run, the setup wizard will appear:
-
-Set your campaign name.
-
-Create your Admin username & password.
-
-From then on, just bookmark and visit your app’s URL — you don’t need to log into Render again unless you want to update or manage your hosting.
---
 ## About Me
+I'm Matthew Husselbury, a data analyst with a background in storytelling, systems design, and user-focused development. Loreweave is a tool I built to support my own campaigns and to demonstrate how structured data and thoughtful design can enhance creative projects.
 
-I'm Matthew Husselbury, a data analyst with a background in storytelling. Loreweave is a tool I built to support my own campaigns and found it may be of use to other GMs. Feel free to use this for your own campaigns.
-
---
-© 2025 Matthew Husselbury. All rights reserved.  
-**This repository is publicly visible but is not open source.**
+---
+© 2025 Matthew Husselbury

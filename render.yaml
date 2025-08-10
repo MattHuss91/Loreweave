@@ -1,10 +1,4 @@
-# Render Blueprint for one-click deploy
-databases:
-  - name: loreweave-db
-    databaseName: loreweave
-    user: loreweave
-    plan: free
-
+# Render Blueprint for one-click deploy (web + Postgres)
 services:
   - type: web
     name: loreweave
@@ -17,5 +11,11 @@ services:
         fromDatabase:
           name: loreweave-db
           property: connectionString
-      - key: CAMPAIGN_NAME
-        value: Loreweave Campaign
+      - key: LOREWEAVE_UPDATE_URL
+        sync: false
+
+databases:
+  - name: loreweave-db
+    databaseName: loreweave
+    user: loreweave
+    plan: free
