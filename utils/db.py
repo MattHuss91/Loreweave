@@ -32,7 +32,7 @@ def _split_sql(sql_text: str):
             stmt.append(ch)
             if ch == in_s and not escape:
                 in_s = None
-            escape = (ch == "\" and not escape)
+            escape = (ch == '"' and not escape)  # fixed here
         else:
             if ch in ("'", '"'):
                 in_s = ch
