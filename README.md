@@ -16,7 +16,7 @@ Its mission is to give GMs and players a **beautiful, interactive, and private s
 - **No-code deploy** — one-click to Render with a free Postgres DB.
 - **Custom calendars** — one-time setup with your own month names and lengths.
 
-[![Deploy Loreweave Blank to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/MattHuss91/Loreweave-Blank)
+[![Deploy Loreweave Blank to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/MattHuss91/Loreweave)
 
 ## Deploy on Render
 - Click the button above — you’ll be taken to Render.
