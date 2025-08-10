@@ -29,7 +29,7 @@ name_row = query("SELECT campaign_name FROM app_settings LIMIT 1")
 if name_row:
     st.write(f"**Campaign:** {name_row[0]['campaign_name']}")
 
-st.write("This is the **Loreweave Blank** starter. Use the Admin Tool to create characters, events, locations and factions.")
+st.write("Use the Admin Tool to create characters, events, locations and factions.")
 
 login_ui()
 footer()
