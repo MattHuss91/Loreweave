@@ -11,7 +11,7 @@ Its mission is to give Game Masters and players a beautiful, interactive, and pr
 - `DATABASE_URL` based config (works with Render/Railway/Supabase/Neon/etc.)
 - One-click style deploy examples for Render and Railway
 
-##Loreweave lets you:
+## Loreweave lets you:
 
 Track your world — maintain detailed profiles for characters, locations, factions, and events.
 
