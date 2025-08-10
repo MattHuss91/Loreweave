@@ -29,8 +29,28 @@ Customise for your world — set your campaign name, user logins, and calendar o
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)  
 ### Render
-- Uses the `deploy/render.yaml` Blueprint to **provision Postgres** and the **web service** automatically.
-- After deploy, open the app → complete the **First‑run Setup** (campaign name + admin).
+Deploy on Render
+Clicking the button takes you to Render.
+
+Step 1: Create a free Render account (one-time).
+
+Step 2: Click Apply — Render will automatically:
+
+Create a free Postgres database.
+
+Create a web service running Loreweave.
+
+Link them together so it works instantly.
+
+Step 3: When the build finishes, click your new app’s public URL.
+
+On first run, the setup wizard will appear:
+
+Set your campaign name.
+
+Create your Admin username & password.
+
+From then on, just bookmark and visit your app’s URL — you don’t need to log into Render again unless you want to update or manage your hosting.
 --
 ## About Me
 
