@@ -39,7 +39,9 @@ Its mission is to give GMs and players a **beautiful, interactive, and private s
 - The app compares `latest.json` to its `LOCAL_VERSION` and links to `CHANGELOG.md`.
 
 ## About Me
-I'm Matthew Husselbury, a data analyst with a background in storytelling, systems design, and user-focused development. Loreweave is a tool I built to support my own campaigns and to demonstrate how structured data and thoughtful design can enhance creative projects.
 
----
-© 2025 Matthew Husselbury
+I'm Matthew Husselbury, a data analyst with a background in storytelling. Loreweave is a tool I built to support my own campaigns and found it may be of use to other GMs. Feel free to use this for your own campaigns.
+
+--
+© 2025 Matthew Husselbury. All rights reserved.  
+**This repository is publicly visible but is not open source.**
