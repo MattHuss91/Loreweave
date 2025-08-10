@@ -1,0 +1,21 @@
+# Render Blueprint for one-click deploy
+databases:
+  - name: loreweave-db
+    databaseName: loreweave
+    user: loreweave
+    plan: free
+
+services:
+  - type: web
+    name: loreweave
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run home.py --server.port $PORT --server.address 0.0.0.0
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: loreweave-db
+          property: connectionString
+      - key: CAMPAIGN_NAME
+        value: Loreweave Campaign
