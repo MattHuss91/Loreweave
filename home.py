@@ -14,6 +14,16 @@ app_header()
 with st.sidebar:
     nav()
 
+# --- Version check banner ---
+from utils.version import get_latest_info, is_newer, LOCAL_VERSION
+latest = get_latest_info()
+if latest and is_newer(latest.get("version","0.0.0"), LOCAL_VERSION):
+    msg = f"**Update available {latest['version']}** — {latest.get('headline','New release available')}"
+    if latest.get("url"):
+        msg += f" · [View release]({latest['url']})"
+    st.warning(msg)
+
+
 # First-run wizard if needed
 if not st.session_state.get(INITIALIZED_KEY):
     done = show_first_run_wizard()

@@ -1,8 +1,6 @@
-# Loreweave
-> **A Future Echoes Project**
+# Loreweave Blank
 
-Loreweave is a self-hosted campaign management app for tabletop role-playing games.
-Its mission is to give Game Masters and players a beautiful, interactive, and private space to store and explore their campaign’s characters, events, locations, and factions
+A self-hostable, *blank* Loreweave starter you can deploy and then initialize on first run.
 
 ## What you get
 - Streamlit app with admin-only editing and player read-only views
@@ -11,31 +9,64 @@ Its mission is to give Game Masters and players a beautiful, interactive, and pr
 - `DATABASE_URL` based config (works with Render/Railway/Supabase/Neon/etc.)
 - One-click style deploy examples for Render and Railway
 
-## Loreweave lets you:
+## Quickstart (local)
+1. Create a PostgreSQL database and grab its connection string as `DATABASE_URL` (e.g. `postgresql://user:pass@host:5432/db`).
+2. `pip install -r requirements.txt`
+3. Initialize schema: `psql "$DATABASE_URL" -f sql/init_db.sql && psql "$DATABASE_URL" -f sql/seed_calendar.sql`
+4. Run: `streamlit run home.py`
 
-Track your world — maintain detailed profiles for characters, locations, factions, and events.
+## Environment
+- `DATABASE_URL` : connection string
+- `CAMPAIGN_NAME` : default campaign title (optional)
+- `ADMIN_USERNAME` : bootstrap admin (optional; can set on first run)
+- `ADMIN_PASSWORD` : bootstrap password (optional; ONLY for demo—use secrets manager in prod)
 
-Control permissions — players can edit their own characters, while the GM can edit everything.
+## Deploy
+See `deploy/` for Render and Railway examples.
 
-Stay organised — view timelines, connect characters to events, and browse lore visually.
 
-Run anywhere — deploy in minutes with a free managed database, no setup required.
-
-Customise for your world — set your campaign name, user logins, and calendar on first run.
-
---
+---
 
 ## Deploy with one click
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)  
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)  [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template)
+
 ### Render
 - Uses the `deploy/render.yaml` Blueprint to **provision Postgres** and the **web service** automatically.
 - After deploy, open the app → complete the **First‑run Setup** (campaign name + admin).
---
-## About Me
 
-I'm Matthew Husselbury, a data analyst with a background in storytelling. Loreweave is a tool I built to support my own campaigns and found it may be of use to other GMs. Feel free to use this for your own campaigns.
+### Railway
+- Click the Railway button, select your repo, and add a **PostgreSQL** service (Railway templates provision this automatically).
+- Set `DATABASE_URL` to the Railway Postgres internal URL (auto-populated in templates).
+- Open the app → complete the **First‑run Setup**.
 
---
-© 2025 Matthew Husselbury. All rights reserved.  
-**This repository is publicly visible but is not open source.**
+
+**Security**: Passwords are hashed with bcrypt and stored as `password_hash` in the database. Do not commit real credentials to the repo.
+
+
+---
+
+## Update Alerts (Built-in)
+The app checks for updates on startup and shows a banner if a newer version is available.
+
+**How it works**
+- `utils/version.py` contains `LOCAL_VERSION` (current app version).
+- The app fetches a JSON file (`latest.json`) from a URL defined by `LOREWEAVE_UPDATE_URL` (or falls back to a default).
+- If `latest.version` is higher than `LOCAL_VERSION`, a banner appears on the home page with a link.
+
+**To enable for your template:**
+1. Commit a `latest.json` to your GitHub repo (an example is included).
+2. Set an env var on your hosting platform:
+   - `LOREWEAVE_UPDATE_URL=https://raw.githubusercontent.com/<you>/<repo>/main/latest.json`
+   - (Optional) `LOREWEAVE_VERSION=0.1.0` to override the local version if you prefer env-based control.
+3. When you release a new version, bump `version` in `latest.json` and update the notes/headline.
+
+Example `latest.json`:
+```json
+{
+  "version": "0.2.0",
+  "headline": "New: Faction pages improved and bug fixes",
+  "url": "https://github.com/<you>/<repo>/releases/tag/v0.2.0",
+  "notes": "Minor fixes and usability improvements."
+}
+```
