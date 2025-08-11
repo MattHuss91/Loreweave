@@ -86,6 +86,7 @@ with st.container():
 <li>Create a project (default settings are fine).</li>
 <li>Open <b>Connection Details</b> and copy the <b>Connection string</b>:
 <br/><code>postgresql://user:password@YOUR-HOST.neon.tech/dbname?sslmode=require</code></li>
+<li>You may need to replace "password" with the database Password </li>
 </ol>
 </div>
 """, unsafe_allow_html=True)
@@ -239,3 +240,4 @@ st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("<hr/>", unsafe_allow_html=True)
 st.caption("Tip: On Render, set the `DATABASE_URL` env var in the service settings so it persists across restarts.")
+
