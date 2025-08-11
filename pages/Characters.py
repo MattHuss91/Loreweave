@@ -37,7 +37,7 @@ char = row[0]
 # --- Render character profile ---
 st.markdown(f"## {char['name']}", unsafe_allow_html=True)
 
-# Character image (centered, fixed size like personal app)
+# Character image (centered)
 if char["character_img"]:
     st.markdown(
         f"""
