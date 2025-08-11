@@ -10,7 +10,7 @@ Its mission is to give GMs and players a **beautiful, interactive, and private s
 
 ---
 
-## ✨ Quick Summary
+## Quick Summary
 - **Track your world** — characters, locations, factions, and events with cross-links and searchable dropdowns.
 - **Detailed views** — select a single character, location, or faction to see a clean, focused profile page.
 - **Stay organised** — timeline with filters, world-day ordering, and readable dates.
@@ -22,7 +22,7 @@ Its mission is to give GMs and players a **beautiful, interactive, and private s
 
 ---
 
-## 🚀 Deploy on Render
+## Deploy on Render
 - Click the button below — you’ll be taken to Render.  
 [![Deploy Loreweave Blank to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/MattHuss91/Loreweave)
 - **Step 1:** Create a free Render account (one-time).
@@ -42,7 +42,7 @@ Its mission is to give GMs and players a **beautiful, interactive, and private s
 
 ---
 
-## 🔧 Admin Tool Features
+## Admin Tool Features
 - **Create, edit, and delete**:
   - Characters (with image, bio, and editable permissions)
   - Events (with world date parsing)
@@ -55,14 +55,14 @@ Its mission is to give GMs and players a **beautiful, interactive, and private s
 
 ---
 
-## 📅 Update Alerts (Built-in)
+## Update Alerts (Built-in)
 - Set `LOREWEAVE_UPDATE_URL` on Render to:  
   `https://raw.githubusercontent.com/<YOUR-USER>/<YOUR-REPO>/main/latest.json`
 - The app compares `latest.json` to its `LOCAL_VERSION` and links to `CHANGELOG.md`.
 
 ---
 
-## 👤 About Me
+## About Me
 
 I'm Matthew Husselbury, a data analyst with a background in storytelling. Loreweave is a tool I built to support my own campaigns and found it may be of use to other GMs. Feel free to use this for your own campaigns.
 
