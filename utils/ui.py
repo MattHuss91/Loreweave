@@ -21,6 +21,13 @@ def apply_global_styles():
     /* Headings */
     h1, h2, h3 { font-family:'Cinzel', serif !important; color:#000000 !important; text-transform: uppercase; }
 
+    /* Event titles – match personal spacing/size */
+    h2 {
+      font-size: 2.2rem !important;
+      letter-spacing: .5px !important;
+      margin: 1.4rem 0 .6rem 0 !important;
+    }
+
     /* Labels */
     .stSelectbox label, .stSlider label, label { color:#000000 !important; font-weight:700 !important; }
 
@@ -49,7 +56,10 @@ def apply_global_styles():
     .stSlider [data-baseweb="slider"] > div > div { background:rgba(44,47,53,.4) !important; }  /* rail */
     .stSlider [data-baseweb="slider"] > div > div > div { background:#ef6b6b !important; }      /* track (red like personal) */
     .stSlider [data-baseweb="slider"] div[role="slider"] { background:#ef6b6b !important; }     /* handle */
-    .stSlider label + div span { color:#000000 !important; font-weight:600 !important; }        /* the edge labels you see */
+    .stSlider label + div span { color:#000000 !important; font-weight:600 !important; }        /* edge labels */
+
+    /* Hide the select_slider's grey value badges under the rail */
+    .stSlider [data-baseweb="slider"] > div > div + div { display: none !important; }
 
     /* Expander – subtle card look */
     details.st-expander > summary {
