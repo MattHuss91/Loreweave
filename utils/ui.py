@@ -18,10 +18,10 @@ def apply_global_styles():
     }
 
     /* Remove white content background for all pages */
-    .block-container {
-        background: transparent !important;
+    .main .block-container {
+        background-color: transparent !important;
         box-shadow: none !important;
-        padding-top: 1rem;
+        padding-top: 1rem !important;
     }
 
     /* Headings */
@@ -35,6 +35,21 @@ def apply_global_styles():
     .stSelectbox label, .stSlider label, label {
         color: #ffffff !important;
         font-weight: bold !important;
+    }
+
+    /* Widget backgrounds */
+    .stSelectbox div[data-baseweb="select"] > div {
+        background-color: rgba(0,0,0,0.4) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+    }
+    .stTextInput input, .stTextArea textarea {
+        background-color: rgba(0,0,0,0.4) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+    }
+    .stSlider > div > div > div {
+        background: transparent !important;
     }
 
     /* Buttons */
