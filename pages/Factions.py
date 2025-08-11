@@ -1,12 +1,17 @@
+import os
 import streamlit as st
-from utils.ui import apply_global_styles, page_title, nav, footer
-from utils.db import query
+from utils.db import query, execute
+from utils.auth import login_ui
+from utils.time import parse_date
 
-st.set_page_config(page_title="Factions", layout="centered")
+from utils.ui import apply_global_styles, page_header, card, footer
+
+st.set_page_config(page_title="Loreweave • <PageName>", layout="centered")
 apply_global_styles()
-with st.sidebar:
-    nav()
-page_title("Factions")
+page_header("<PageName>")
+
+st.set_page_config(page_title="Admin Tool", layout="centered")
+
 
 rows = query("SELECT faction_id,name,alignment,goals,faction_img FROM factions ORDER BY name")
 if not rows:
