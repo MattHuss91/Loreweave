@@ -14,7 +14,7 @@ def apply_global_styles():
         background-repeat: no-repeat;
         background-position: center;
         font-family: 'Lora', serif !important;
-        color: #ffffff !important;
+        color: #000000 !important;
     }
 
     /* Remove white content background for all pages */
@@ -27,7 +27,7 @@ def apply_global_styles():
     /* Headings */
     h1, h2, h3 {
         font-family: 'Cinzel', serif !important;
-        color: #ffffff !important;
+        color: #000000 !important;
         text-transform: uppercase;
     }
 
@@ -55,7 +55,7 @@ def apply_global_styles():
     /* Buttons */
     div.stButton > button {
         background-color: #333333 !important;
-        color: #ffffff !important;
+        color: #000000 !important;
         font-weight: bold !important;
         font-family: 'Cinzel', serif !important;
         border: none !important;
