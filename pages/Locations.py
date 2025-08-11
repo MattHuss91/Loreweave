@@ -39,18 +39,39 @@ if not row:
 
 loc = row[0]
 
-# --- Display selected location ---
-st.markdown(f"<h2 style='font-family:Cinzel, serif; font-weight:bold; color:black;'>{loc['name']}</h2>", unsafe_allow_html=True)
+# --- Display selected location (match personal layout) ---
+st.markdown(
+    f"""
+    <h2 style="
+        font-family: Cinzel, serif;
+        font-weight: 700;
+        color: #000;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: .5px;
+        margin: 1.2rem 0 .4rem 0;
+    ">{loc['name']}</h2>
+    """,
+    unsafe_allow_html=True
+)
 
 if loc["region"]:
-    st.markdown(f"<p style='font-weight:bold; color:black;'>Region:</p> {loc['region']}", unsafe_allow_html=True)
+    st.markdown(
+        f"""
+        <h3 style="font-family:Cinzel,serif; color:#000; margin:.6rem 0;">
+            <span style="font-weight:700;">Region:</span>
+            <span style="font-weight:400;"> {loc['region']}</span>
+        </h3>
+        """,
+        unsafe_allow_html=True
+    )
 
-# Location image - centered & styled
+# Image centered
 if loc["location_img"]:
     st.markdown(
         f"""
-        <div style='display: flex; justify-content: center; margin: 1rem 0;'>
-            <img src='{loc['location_img']}' style='max-width: 100%; height: auto; border-radius: 10px;'/>
+        <div style="display:flex; justify-content:center; margin: 1rem 0;">
+            <img src="{loc['location_img']}" style="max-width:100%; height:auto; border-radius:10px;" />
         </div>
         """,
         unsafe_allow_html=True
@@ -58,7 +79,10 @@ if loc["location_img"]:
 
 # Description
 if loc["description"]:
-    st.markdown("<h3 style='font-family:Cinzel, serif; font-weight:bold; color:black;'>Description</h3>", unsafe_allow_html=True)
+    st.markdown(
+        '<h3 style="font-family:Cinzel,serif; font-weight:700; color:#000; margin-top:1rem;">Description</h3>',
+        unsafe_allow_html=True
+    )
     st.write(loc["description"])
 else:
     st.write("No description available.")
