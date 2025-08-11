@@ -232,10 +232,10 @@ else:
                         cn.commit()
                     count = _count_users(active_url)
                     st.success(f"Admin created. Total users: {count}.")
+                    st.success("✅ Setup complete! Use the sidebar to access your campaign pages. You are logged in as Admin.")
                 except Exception as e:
                     st.error(f"Failed to create admin: {e}")
 st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("<hr/>", unsafe_allow_html=True)
 st.caption("Tip: On Render, set the `DATABASE_URL` env var in the service settings so it persists across restarts.")
-
