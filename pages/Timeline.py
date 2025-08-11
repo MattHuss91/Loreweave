@@ -1,6 +1,17 @@
+import os
 import streamlit as st
-from utils.ui import apply_global_styles, page_title, nav, footer
-from utils.db import query
+from utils.db import query, execute
+from utils.auth import login_ui
+from utils.time import parse_date
+
+from utils.ui import apply_global_styles, page_header, card, footer
+
+st.set_page_config(page_title="Loreweave • <PageName>", layout="centered")
+apply_global_styles()
+page_header("<PageName>")
+
+st.set_page_config(page_title="Admin Tool", layout="centered")
+
 
 # --- Helpers ---
 def _ordinal(n: int) -> str:
@@ -22,12 +33,6 @@ def format_world_date(world_day: int) -> str:
     day_in_month = (day_of_year % days_per_month) + 1
 
     return f"{_ordinal(day_in_month)} {months[month_index]} {year}ASF"
-
-st.set_page_config(page_title="Timeline", layout="centered")
-apply_global_styles()
-with st.sidebar:
-    nav()
-page_title("Timeline")
 
 bounds = query("SELECT COALESCE(MIN(world_day),0) AS min_wd, COALESCE(MAX(world_day),360) AS max_wd FROM campaignevents")
 wd_min, wd_max = bounds[0]["min_wd"], bounds[0]["max_wd"]
