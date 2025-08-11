@@ -10,9 +10,6 @@ st.set_page_config(page_title="Loreweave • <PageName>", layout="centered")
 apply_global_styles()
 page_header("<PageName>")
 
-st.set_page_config(page_title="Admin Tool", layout="centered")
-
-
 qid = st.query_params.get("character_id", [None])[0]
 
 rows = query("SELECT character_id,name,type,status,bio,character_img,is_player FROM characters ORDER BY name")
