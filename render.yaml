@@ -1,21 +1,13 @@
-# Render Blueprint for one-click deploy (web + Postgres)
+# Render Blueprint for one-click deploy (web only; user supplies Postgres)
 services:
   - type: web
     name: loreweave
     env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: streamlit run home.py --server.port $PORT --server.address 0.0.0.0
-    plan: free
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: loreweave-db
-          property: connectionString
+        sync: false        # user pastes their Postgres URL in Render Settings or via Setup Wizard
       - key: LOREWEAVE_UPDATE_URL
         sync: false
-
-databases:
-  - name: loreweave-db
-    databaseName: loreweave
-    user: loreweave
-    plan: free
