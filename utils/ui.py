@@ -31,26 +31,24 @@ def apply_global_styles():
         text-transform: uppercase;
     }
 
-    /* Form labels for selectbox, slider, etc. */
-    .stSelectbox label, .stSlider label, label {
-        color: #ffffff !important;
-        font-weight: bold !important;
+   /* Form labels for selectbox, slider, etc. */
+.stSelectbox label, .stSlider label, label {
+    color: #000000 !important;  /* Changed from white to black */
+    font-weight: bold !important;
+}
+
+   /* Widget backgrounds */
+.stSelectbox div[data-baseweb="select"] > div {
+    background-color: rgba(255,255,255,0.6) !important; /* lighter background for black text */
+    color: #000000 !important;
+    border-radius: 8px !important;
+    }
+.stTextInput input, .stTextArea textarea {
+    background-color: rgba(255,255,255,0.6) !important;
+    color: #000000 !important;
+    border-radius: 8px !important;
     }
 
-    /* Widget backgrounds */
-    .stSelectbox div[data-baseweb="select"] > div {
-        background-color: rgba(0,0,0,0.4) !important;
-        color: #ffffff !important;
-        border-radius: 8px !important;
-    }
-    .stTextInput input, .stTextArea textarea {
-        background-color: rgba(0,0,0,0.4) !important;
-        color: #ffffff !important;
-        border-radius: 8px !important;
-    }
-    .stSlider > div > div > div {
-        background: transparent !important;
-    }
 
     /* Buttons */
     div.stButton > button {
