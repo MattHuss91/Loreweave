@@ -145,6 +145,26 @@ if use_clicked and manual_url:
     st.session_state["SETUP_DB_URL"] = manual_url
     st.success("Connection saved for this setup session.")
 
+    is_render = bool(os.getenv("RENDER") or os.getenv("RENDER_EXTERNAL_URL"))
+    if is_render and not env_url:
+        st.warning(
+            "To make this connection persist after a restart on Render, add it to your "
+            "service’s Environment Variables as `DATABASE_URL`."
+        )
+        with st.expander("How to save on Render"):
+            st.markdown(
+                "1. Open your Render service → **Settings** → **Environment Variables**\n"
+                "2. Click **Add Environment Variable**\n"
+                "3. **Key**: `DATABASE_URL`\n"
+                "4. **Value** (paste this):"
+            )
+            st.code(manual_url)
+            st.markdown("5. **Save** and redeploy")
+    elif not env_url:
+        with st.expander("Make it persistent locally"):
+            st.markdown("Set an env var before running Streamlit:")
+            st.code(f'export DATABASE_URL="{manual_url}"', language="bash")
+
 if clear_clicked:
     if "SETUP_DB_URL" in st.session_state:
         del st.session_state["SETUP_DB_URL"]
@@ -218,3 +238,4 @@ st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("<hr/>", unsafe_allow_html=True)
 st.caption("Tip: On Render, set the `DATABASE_URL` env var in the service settings so it persists across restarts.")
+
