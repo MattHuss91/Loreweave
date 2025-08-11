@@ -10,8 +10,6 @@ st.set_page_config(page_title="Loreweave • <PageName>", layout="centered")
 apply_global_styles()
 page_header("<PageName>")
 
-st.set_page_config(page_title="Admin Tool", layout="centered")
-
 
 rows = query("SELECT faction_id,name,alignment,goals,faction_img FROM factions ORDER BY name")
 if not rows:
