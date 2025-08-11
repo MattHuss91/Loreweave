@@ -6,78 +6,79 @@ def apply_global_styles():
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Lora&display=swap');
 
-    /* App background & font */
+    /* Background + base font */
     .stApp {
         background-image: url('https://i.imgur.com/v0Jdhpp.jpeg');
-        background-size: cover;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-position: center;
+        background-size: cover; background-attachment: fixed;
+        background-repeat: no-repeat; background-position: center;
         font-family: 'Lora', serif !important;
-        color: #000000 !important;
+        color: #000000 !important; /* body text black (like personal) */
     }
 
-    /* Remove white content background for all pages */
-    .main .block-container {
-        background-color: transparent !important;
-        box-shadow: none !important;
-        padding-top: 1rem !important;
-    }
+    /* Remove white container */
+    .main .block-container { background: transparent !important; box-shadow:none !important; padding-top: 1rem !important; }
 
     /* Headings */
-    h1, h2, h3 {
-        font-family: 'Cinzel', serif !important;
-        color: #000000 !important;
-        text-transform: uppercase;
+    h1, h2, h3 { font-family:'Cinzel', serif !important; color:#000000 !important; text-transform: uppercase; }
+
+    /* Labels */
+    .stSelectbox label, .stSlider label, label { color:#000000 !important; font-weight:700 !important; }
+
+    /* Selectbox: dark, white text (personal look) */
+    .stSelectbox div[data-baseweb="select"] > div {
+        background:#2c2f35 !important;
+        color:#ffffff !important;
+        border-radius:10px !important;
+        border:1px solid rgba(0,0,0,.3) !important;
+        min-height:48px !important;
+        padding-left:.5rem !important;
     }
 
-   /* Form labels for selectbox, slider, etc. */
-.stSelectbox label, .stSlider label, label {
-    color: #000000 !important;  /* Changed from white to black */
-    font-weight: bold !important;
-}
-
-   /* Widget backgrounds */
-.stSelectbox div[data-baseweb="select"] > div {
-    background-color: rgba(255,255,255,0.6) !important; /* lighter background for black text */
-    color: #000000 !important;
-    border-radius: 8px !important;
-    }
-.stTextInput input, .stTextArea textarea {
-    background-color: rgba(255,255,255,0.6) !important;
-    color: #000000 !important;
-    border-radius: 8px !important;
+    /* Text inputs (keep dark like personal) */
+    .stTextInput input, .stTextArea textarea {
+        background:#2c2f35 !important;
+        color:#ffffff !important;
+        border-radius:10px !important;
+        border:1px solid rgba(0,0,0,.3) !important;
     }
 
+    /* Slider (BaseWeb) – dark rail, red accent, readable tick labels */
+    .stSlider [data-baseweb="slider"] > div { background:transparent !important; }
+    .stSlider [data-baseweb="slider"] div[role="slider"] { box-shadow:none !important; }
+    .stSlider [data-baseweb="slider"] div[role="slider"]::before { display:none !important; }
+    .stSlider [data-baseweb="slider"] > div > div { background:rgba(44,47,53,.4) !important; }  /* rail */
+    .stSlider [data-baseweb="slider"] > div > div > div { background:#ef6b6b !important; }      /* track (red like personal) */
+    .stSlider [data-baseweb="slider"] div[role="slider"] { background:#ef6b6b !important; }     /* handle */
+    .stSlider label + div span { color:#000000 !important; font-weight:600 !important; }        /* the edge labels you see */
+
+    /* Expander – subtle card look */
+    details.st-expander > summary {
+        background: rgba(255,255,255,0.85) !important;
+        border-radius: 10px !important;
+        padding: .65rem 1rem !important;
+        border: 1px solid rgba(0,0,0,.08) !important;
+        font-weight:700 !important;
+    }
+    details.st-expander > div[aria-expanded="true"] {
+        background: rgba(255,255,255,0.85) !important;
+        border-radius: 0 0 10px 10px !important;
+        border-left: 1px solid rgba(0,0,0,.08) !important;
+        border-right: 1px solid rgba(0,0,0,.08) !important;
+        border-bottom: 1px solid rgba(0,0,0,.08) !important;
+        padding: .5rem 1rem 1rem 1rem !important;
+    }
 
     /* Buttons */
     div.stButton > button {
-        background-color: #333333 !important;
-        color: #000000 !important;
-        font-weight: bold !important;
-        font-family: 'Cinzel', serif !important;
-        border: none !important;
-        border-radius: 10px !important;
-        padding: 0.5rem 1rem !important;
+        background:#333 !important; color:#fff !important;
+        font-weight:700 !important; font-family:'Cinzel', serif !important;
+        border:none !important; border-radius:10px !important; padding:.6rem 1rem !important;
     }
 
-    /* Cards (if used via card() helper) */
-    .lw-card {
-        background: rgba(255,255,255,0.1);
-        padding: .85rem 1rem;
-        border-radius: 12px;
-        margin: .5rem 0 1rem 0;
-    }
-
-    .lw-hr {
-        border:none;
-        border-top:1px solid rgba(255,255,255,.3);
-        margin: 1rem 0;
-    }
-
-    /* Centered brand header */
+    /* Brand header + divider */
     .lw-brand { text-align:center; margin-top:-14px; margin-bottom:.25rem; }
     .lw-brand img { width:200px; margin-bottom:-6px; }
+    .lw-hr { border:none; border-top:1px solid rgba(0,0,0,.15); margin: 1rem 0; }
     </style>
     """, unsafe_allow_html=True)
 
