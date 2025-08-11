@@ -1,12 +1,17 @@
 import streamlit as st
-from utils.ui import apply_global_styles, page_title, nav, footer
-from utils.db import query
+import os
+from utils.db import query, execute
+from utils.auth import login_ui
+from utils.time import parse_date
 
-st.set_page_config(page_title="Characters", layout="centered")
+from utils.ui import apply_global_styles, page_header, card, footer
+
+st.set_page_config(page_title="Loreweave • <PageName>", layout="centered")
 apply_global_styles()
-with st.sidebar:
-    nav()
-page_title("Characters")
+page_header("<PageName>")
+
+st.set_page_config(page_title="Admin Tool", layout="centered")
+
 
 qid = st.query_params.get("character_id", [None])[0]
 
