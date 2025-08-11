@@ -107,4 +107,8 @@ def card(md: str):
 
 def footer():
     st.markdown("<div class='lw-hr'></div>", unsafe_allow_html=True)
-    st.caption("Powered by Loreweave • © 2025 Matthew Husselbury")
+    st.markdown(
+        "<div style='color:black; font-size:0.8rem;'>Powered by Loreweave • © 2025 Matthew Husselbury</div>",
+        unsafe_allow_html=True
+    )
+
