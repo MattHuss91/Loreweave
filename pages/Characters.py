@@ -1,14 +1,13 @@
 import streamlit as st
-import pandas as pd
 from utils.db import query
 from utils.ui import apply_global_styles, page_header, footer
 
-# --- Streamlit page config ---
+# --- Page config & styles ---
 st.set_page_config(page_title="Loreweave • Characters", layout="centered")
 apply_global_styles()
 page_header("Characters")
 
-# --- Get all characters for dropdown ---
+# --- Get all characters ---
 characters = query("SELECT character_id, name FROM characters ORDER BY name ASC")
 if not characters:
     st.info("No characters found in the database.")
@@ -36,15 +35,24 @@ if not row:
 char = row[0]
 
 # --- Render character profile ---
-st.markdown(f"## {char['name']}")
+st.markdown(f"## {char['name']}", unsafe_allow_html=True)
+
+# Character image (centered, fixed size like personal app)
+if char["character_img"]:
+    st.markdown(
+        f"""
+        <div style='text-align:center; margin: 1rem 0;'>
+            <img src='{char["character_img"]}' style='max-width:300px; border-radius:10px;' />
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Details
 if char["type"]:
     st.markdown(f"**Type:** {char['type']}")
 if char["status"]:
     st.markdown(f"**Status:** {char['status']}")
-
-# Character image
-if char["character_img"]:
-    st.image(char["character_img"], use_container_width=True)
 
 # Bio
 if char["bio"]:
