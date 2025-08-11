@@ -10,9 +10,6 @@ st.set_page_config(page_title="Loreweave • <PageName>", layout="centered")
 apply_global_styles()
 page_header("<PageName>")
 
-st.set_page_config(page_title="Admin Tool", layout="centered")
-
-
 rows = query("SELECT location_id,name,description,location_img FROM locations ORDER BY name")
 if not rows:
     st.info("No locations yet.")
