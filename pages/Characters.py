@@ -1,39 +1,60 @@
 import streamlit as st
-import os
-from utils.db import query, execute
-from utils.auth import login_ui
-from utils.time import parse_date
+import pandas as pd
+from utils.db import query
+from utils.ui import apply_global_styles, page_header, footer
 
-from utils.ui import apply_global_styles, page_header, card, footer
-
-st.set_page_config(page_title="Loreweave • <PageName>", layout="centered")
+# --- Streamlit page config ---
+st.set_page_config(page_title="Loreweave • Characters", layout="centered")
 apply_global_styles()
-page_header("<PageName>")
+page_header("Characters")
 
-qid = st.query_params.get("character_id", [None])[0]
+# --- Get all characters for dropdown ---
+characters = query("SELECT character_id, name FROM characters ORDER BY name ASC")
+if not characters:
+    st.info("No characters found in the database.")
+    footer()
+    st.stop()
 
-rows = query("SELECT character_id,name,type,status,bio,character_img,is_player FROM characters ORDER BY name")
-if not rows:
-    st.info("No characters yet.")
+char_dict = {c["name"]: c["character_id"] for c in characters}
+
+# --- Character selection ---
+selected_name = st.selectbox("Select a character", list(char_dict.keys()))
+selected_id = char_dict[selected_name]
+
+# --- Get selected character details ---
+row = query("""
+    SELECT name, type, status, bio, is_player, character_img
+    FROM characters
+    WHERE character_id = %s
+""", (selected_id,))
+
+if not row:
+    st.warning("Character not found.")
+    footer()
+    st.stop()
+
+char = row[0]
+
+# --- Render character profile ---
+st.markdown(f"## {char['name']}")
+if char["type"]:
+    st.markdown(f"**Type:** {char['type']}")
+if char["status"]:
+    st.markdown(f"**Status:** {char['status']}")
+
+# Character image
+if char["character_img"]:
+    st.image(char["character_img"], use_container_width=True)
+
+# Bio
+if char["bio"]:
+    st.markdown("### Biography")
+    st.write(char["bio"])
+
+# Is player?
+if char["is_player"]:
+    st.markdown("*Player Character*")
 else:
-    for r in rows:
-        label = f"{r['name']} — {r['type'] or 'Unknown'}"
-        default_open = (qid is not None and str(r['character_id']) == str(qid))
-        with st.expander(label, expanded=default_open):
-            if r['character_img']:
-                st.image(r['character_img'])
-            st.write(f"**Status:** {r['status'] or 'Unknown'}")
-            st.write(r['bio'] or "")
-            evs = query("""
-                SELECT e.event_id, e.title, e.date_occurred
-                FROM characterappearances ca
-                JOIN campaignevents e ON e.event_id = ca.event_id
-                WHERE ca.character_id = %s
-                ORDER BY e.world_day
-            """, (r['character_id'],))
-            if evs:
-                st.markdown("**Appears in:** " + ", ".join(
-                    [f"[{e['title']}](/pages/Events?event_id={e['event_id']})" for e in evs]
-                ))
+    st.markdown("*Non-Player Character*")
 
 footer()
