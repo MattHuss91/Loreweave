@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "headline": "Initial public release of Loreweave Blank.",
+  "version": "1.1.0",
+  "headline": "Major update — focused views, delete actions, and safety checks.",
   "url": "CHANGELOG.md",
-  "notes": "See CHANGELOG.md for details."
+  "notes": "Added single-record display for Locations and Factions with dropdown selection; introduced delete functionality across Admin Tool (Characters, Events, Locations, Factions, and link tables) with confirmation prompts; README updated to reflect all new features."
 }
