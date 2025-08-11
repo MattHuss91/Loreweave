@@ -6,7 +6,7 @@ def apply_global_styles():
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Lora&display=swap');
 
-    /* App background / global font */
+    /* App background & font */
     .stApp {
         background-image: url('https://i.imgur.com/v0Jdhpp.jpeg');
         background-size: cover;
@@ -14,46 +14,53 @@ def apply_global_styles():
         background-repeat: no-repeat;
         background-position: center;
         font-family: 'Lora', serif !important;
-        color: #000000 !important;
+        color: #ffffff !important;
     }
 
-    /* Main container */
+    /* Remove white content background for all pages */
     .block-container {
-        background-color: rgba(255, 255, 255, 0.92);
-        padding: 1.0rem 1.0rem 1.25rem 1.0rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        background: transparent !important;
+        box-shadow: none !important;
+        padding-top: 1rem;
     }
 
     /* Headings */
-    h1, h2, h3, .app-title {
+    h1, h2, h3 {
         font-family: 'Cinzel', serif !important;
-        color: #222;
-        letter-spacing: 0.5px;
-    }
-    h1 { text-transform: uppercase; }
-    h2, h3 { text-transform: none; }
-
-    /* Labels / inputs / buttons */
-    label { color:#000 !important; font-weight:600; }
-    div.stButton > button, .stDownloadButton button {
-        background-color:#333 !important; color:#fff !important;
-        font-weight:700 !important; font-family:'Cinzel', serif !important;
-        border:none !important; border-radius:10px !important;
-        padding: .6rem 1.0rem !important;
-    }
-    .stTextInput input, .stTextArea textarea, .stSelectbox div[data-baseweb="select"] > div {
-        background: #1f232a; color:#fff; border-radius:10px; border:1px solid #2e3440;
+        color: #ffffff !important;
+        text-transform: uppercase;
     }
 
-    /* Cards / helpers */
+    /* Form labels for selectbox, slider, etc. */
+    .stSelectbox label, .stSlider label, label {
+        color: #ffffff !important;
+        font-weight: bold !important;
+    }
+
+    /* Buttons */
+    div.stButton > button {
+        background-color: #333333 !important;
+        color: #ffffff !important;
+        font-weight: bold !important;
+        font-family: 'Cinzel', serif !important;
+        border: none !important;
+        border-radius: 10px !important;
+        padding: 0.5rem 1rem !important;
+    }
+
+    /* Cards (if used via card() helper) */
     .lw-card {
-        background: rgba(255,255,255,0.85);
-        padding: .85rem 1rem; border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        background: rgba(255,255,255,0.1);
+        padding: .85rem 1rem;
+        border-radius: 12px;
         margin: .5rem 0 1rem 0;
     }
-    .lw-hr { border:none; border-top:1px solid rgba(0,0,0,.15); margin: 1rem 0; }
+
+    .lw-hr {
+        border:none;
+        border-top:1px solid rgba(255,255,255,.3);
+        margin: 1rem 0;
+    }
 
     /* Centered brand header */
     .lw-brand { text-align:center; margin-top:-14px; margin-bottom:.25rem; }
