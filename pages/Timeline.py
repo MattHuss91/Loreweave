@@ -2,6 +2,27 @@ import streamlit as st
 from utils.ui import apply_global_styles, page_title, nav, footer
 from utils.db import query
 
+# --- Helpers ---
+def _ordinal(n: int) -> str:
+    if 11 <= n % 100 <= 13:
+        return f"{n}th"
+    return f"{n}{['th','st','nd','rd','th','th','th','th','th','th'][n % 10]}"
+
+def format_world_date(world_day: int) -> str:
+    months = [
+        "Verdanir", "Emberfall", "Duskwatch", "Glimmerwane", "Brightreach",
+        "Stormrest", "Hollowshade", "Deepmoor", "Frostmere", "Starwake"
+    ]
+    days_per_month = 36
+    days_per_year = days_per_month * len(months)
+
+    year = (world_day // days_per_year) + 1
+    day_of_year = world_day % days_per_year
+    month_index = day_of_year // days_per_month
+    day_in_month = (day_of_year % days_per_month) + 1
+
+    return f"{_ordinal(day_in_month)} {months[month_index]} {year}ASF"
+
 st.set_page_config(page_title="Timeline", layout="centered")
 apply_global_styles()
 with st.sidebar:
@@ -12,7 +33,19 @@ bounds = query("SELECT COALESCE(MIN(world_day),0) AS min_wd, COALESCE(MAX(world_
 wd_min, wd_max = bounds[0]["min_wd"], bounds[0]["max_wd"]
 if wd_min == wd_max:
     wd_min = 0
-wd_range = st.slider("World day range", min_value=int(wd_min), max_value=int(wd_max or 360), value=(int(wd_min), int(wd_max or 360)))
+
+# Show human-readable labels for min/max
+st.write(f"**Date range:** {format_world_date(int(wd_min))} → {format_world_date(int(wd_max or 360))}")
+
+wd_range = st.slider(
+    "World day range",
+    min_value=int(wd_min),
+    max_value=int(wd_max or 360),
+    value=(int(wd_min), int(wd_max or 360))
+)
+
+# Echo the selection in human-readable form
+st.write(f"Selected: {format_world_date(wd_range[0])} → {format_world_date(wd_range[1])}")
 
 locs = query("SELECT location_id, name FROM locations ORDER BY name")
 loc_names = ["(Any)"] + [r["name"] for r in locs]
@@ -30,7 +63,8 @@ if not rows:
     st.info("No events in this range yet.")
 else:
     for r in rows:
-        with st.expander(f"{r['world_day']:>4} — {r['title']} ({r['date_occurred'] or 'Unknown'})"):
+        header = f"{format_world_date(int(r['world_day']))} — {r['title']} ({r['date_occurred'] or 'Unknown'})"
+        with st.expander(header):
             st.write(f"**Location:** {r['location'] or 'Unspecified'}")
             chars = query("""
                 SELECT c.character_id, c.name, c.type
@@ -43,3 +77,4 @@ else:
                 ))
 
 footer()
+
